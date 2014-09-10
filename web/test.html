@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="stylesheet" type="text/css" href="img/style.css" />
+<script type="text/javascript" src="DoubleTrackBar.js"></script>
+</head>
+<script type="text/javascript">
+function $(id) {
+	return document.getElementById(id);
+}
+function classFilter(r,m,not){
+	m = " " + m + " ";
+	var tmp = [];
+	for ( var i = 0; r[i]; i++ ) {
+		var pass = (" " + r[i].className + " ").indexOf( m ) >= 0;
+		if ( not ^ pass )
+			tmp.push( r[i] );
+	}
+	return tmp;
+}
+</script>
+<body>
+
+<div id="container">
+	<p>значения: от 0 до 10; Margins: 30; Правый ползунок дрожит при перемещении левого в ИЕ6 </p>
+	<div id="DoubleTrack-1" class="DoubleTrackBar">
+		<img src="img/line-l.gif" alt="" class="start" />
+		<img src="img/line-r.gif" alt="" class="finish" />
+		<div id="DoubleTrack-1-Tracker" class="Tracker">
+			<img src="img/track-l.gif" alt='' class="fll" />
+			<img src="img/track-r.gif" alt='' class="flr" />
+			<span class="fll text" id="DoubleTrack-1-LeftText"></span>
+			<span class="flr text" id="DoubleTrack-1-RightText"></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var DoubleTrackBar = new cDoubleTrackBar('DoubleTrack-1', 'DoubleTrack-1-Tracker', {
+		OnUpdate: function(){
+			$('DoubleTrack-1-LeftText').innerHTML = this.leadSpaces(this.MinPos);
+			$('DoubleTrack-1-RightText').innerHTML = this.leadSpaces(this.MaxPos);
+			this.Tracker.style.backgroundPosition = -this.TrackerLeft + 'px center';
+		},
+		Min: 0,
+		Max: 10,
+		MinSpace: 0,
+		Margins: 30
+	});
+	DoubleTrackBar.AutoHairline(6);
+	</script>
+
+	<p>значения: от 0 до 10; FingerOffset: 8; MinSpace: 2; RoundTo: 0.01; Правый ползунок <b>не</b> дрожит при перемещении левого в ИЕ6</p>
+	<div id="DoubleTrack-2" class="DoubleTrackBar">
+		<img src="img/line-l.gif" alt="" class="start" />
+		<img src="img/line-r.gif" alt="" class="finish" />
+		<div id="DoubleTrack-2-Tracker" class="Tracker">
+			<img src="img/track-l.gif" alt='' class="fll" />
+			<img src="img/track-r.gif" alt='' class="flr" />
+			<span class="fll text" id="DoubleTrack-2-LeftText"></span>
+			<span class="flr text" id="DoubleTrack-2-RightText"></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var DoubleTrackBar = new cDoubleTrackBar('DoubleTrack-2', 'DoubleTrack-2-Tracker', {
+		OnUpdate: function(){
+			$('DoubleTrack-2-LeftText').innerHTML = this.MinPos.toFixed(2);
+			$('DoubleTrack-2-RightText').innerHTML = this.MaxPos.toFixed(2);
+			this.Tracker.style.backgroundPosition = -this.TrackerLeft + 'px center';
+			if (this.fix)
+				for (var i in this.fix)
+					this.fix[i].style.left = (this.TrackerRight - this.TrackerLeft) + 'px';
+		},
+		Min: 0,
+		Max: 10,
+		FingerOffset: 8,
+		MinSpace: 2,
+		RoundTo: 0.01,
+		Margins: 30
+	});
+	DoubleTrackBar.AutoHairline(6);
+	DoubleTrackBar.fix = classFilter(DoubleTrackBar.Tracker.getElementsByTagName('*'), 'flr');
+	</script>
+	
+	<p>значения: от 0 до 10; AllowedValues: true; MinSpace: 0</p>
+	<div id="DoubleTrack-3" class="DoubleTrackBar">
+		<img src="img/line-l.gif" alt="" class="start" />
+		<img src="img/line-r.gif" alt="" class="finish" />
+		<div id="DoubleTrack-3-Tracker" class="Tracker">
+			<img src="img/track-l.gif" alt='' class="fll" />
+			<img src="img/track-r.gif" alt='' class="flr" />
+			<span class="fll text" id="DoubleTrack-3-LeftText"></span>
+			<span class="flr text" id="DoubleTrack-3-RightText"></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var DoubleTrackBar = new cDoubleTrackBar('DoubleTrack-3', 'DoubleTrack-3-Tracker', {
+		OnUpdate: function(){
+			$('DoubleTrack-3-LeftText').innerHTML = this.leadSpaces(this.MinPos);
+			$('DoubleTrack-3-RightText').innerHTML = this.leadSpaces(this.MaxPos);
+			this.Tracker.style.backgroundPosition = -this.TrackerLeft + 'px center';
+			if (this.fix)
+				for (var i in this.fix)
+					this.fix[i].style.left = (this.TrackerRight - this.TrackerLeft) + 'px';
+		},
+		Min: 0,
+		Max: 10,
+		FingerOffset: 8,
+		MinSpace: 0,
+		Margins: 30,
+		AllowedValues: true
+	});
+	DoubleTrackBar.AutoHairline(6);
+	DoubleTrackBar.fix = classFilter(DoubleTrackBar.Tracker.getElementsByTagName('*'), 'flr');
+	</script>
+	
+	<p>значения: от 500 до 15000; MinSpace: 200; Левый ползунок заморожен</p>
+	<div id="DoubleTrack-4" class="DoubleTrackBar">
+		<img src="img/line-l.gif" alt="" class="start" />
+		<img src="img/line-r.gif" alt="" class="finish" />
+		<div id="DoubleTrack-4-Tracker" class="Tracker">
+			<img src="img/track-l.gif" alt='' class="fll dis" />
+			<img src="img/track-r.gif" alt='' class="flr" />
+			<span class="fll text" id="DoubleTrack-4-LeftText"></span>
+			<span class="flr text" id="DoubleTrack-4-RightText"></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var DoubleTrackBar = new cDoubleTrackBar('DoubleTrack-4', 'DoubleTrack-4-Tracker', {
+		OnUpdate: function(){
+			$('DoubleTrack-4-LeftText').innerHTML = this.leadSpaces(this.MinPos);
+			$('DoubleTrack-4-RightText').innerHTML = this.leadSpaces(this.MaxPos);
+			this.Tracker.style.backgroundPosition = -this.TrackerLeft + 'px center';
+		},
+		Disabled: function() {
+			return this.Left;
+		},
+		Min: 500,
+		Max: 15000,
+		FingerOffset: 8,
+		MinSpace: 200,
+		Margins: 30
+	});
+	DoubleTrackBar.AutoHairline(5);
+	DoubleTrackBar.fix = classFilter(DoubleTrackBar.Tracker.getElementsByTagName('*'), 'flr');
+	</script>
+	
+	<p>значения: от 500 до 20000; MinSpace: 500; RoundTo: 500; FormatNumbers: true; AllowedValues: true</p>
+	<div id="DoubleTrack-5" class="DoubleTrackBar">
+		<img src="img/line-l.gif" alt="" class="start" />
+		<img src="img/line-r.gif" alt="" class="finish" />
+		<div id="DoubleTrack-5-Tracker" class="Tracker">
+			<img src="img/track-l.gif" alt='' class="fll" />
+			<img src="img/track-r.gif" alt='' class="flr" />
+			<span class="fll text" id="DoubleTrack-5-LeftText"></span>
+			<span class="flr text" id="DoubleTrack-5-RightText"></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var DoubleTrackBar = new cDoubleTrackBar('DoubleTrack-5', 'DoubleTrack-5-Tracker', {
+		OnUpdate: function(){
+			$('DoubleTrack-5-LeftText').innerHTML = this.leadSpaces(this.MinPos);
+			$('DoubleTrack-5-RightText').innerHTML = this.leadSpaces(this.MaxPos);
+			this.Tracker.style.backgroundPosition = -this.TrackerLeft + 'px center';
+			if (this.fix)
+				for (var i in this.fix)
+					this.fix[i].style.left = (this.TrackerRight - this.TrackerLeft) + 'px';
+		},
+		Min: 500,
+		Max: 20000,
+		FingerOffset: 8,
+		MinSpace: 500,
+		RoundTo: 500,
+		Margins: 30,
+		FormatNumbers: true,
+		AllowedValues: true
+	});
+	DoubleTrackBar.AutoHairline(6);
+	DoubleTrackBar.fix = classFilter(DoubleTrackBar.Tracker.getElementsByTagName('*'), 'flr');
+	</script>
+</div>
+
+</body>
+</html>

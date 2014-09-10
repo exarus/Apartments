@@ -1,0 +1,81 @@
+#container {
+	width: 760px;
+	padding: 0 30px 40px;
+	background: #ECECEC;
+	border: 1px solid #BBB;
+}
+p {
+	font-size: 12px;
+	font-family: Tahoma;
+	padding: 10px 0 0;
+}
+
+.DoubleTrackBar {
+	height: 70px;
+	width: 760px;
+	margin-top: 10px;
+	background: url('line-c.gif') left center repeat-x;
+	position: relative;}
+.DoubleTrackBar .start,
+.DoubleTrackBar .finish{
+	margin: -5px 0;
+	position: absolute;
+	z-index: 20;
+	top: 50%;
+	left: 0;}
+.DoubleTrackBar .finish{
+	left: auto;
+	right: 0;}
+	
+.DoubleTrackBar .Tracker{
+	margin: -16px 0;
+	position: absolute;
+	z-index: 50;
+	height: 32px;
+	font-size: 0;
+	background: url('hline-c.gif') left center repeat-x;
+	top: 50%;}
+.DoubleTrackBar .Tracker .flr,
+.DoubleTrackBar .Tracker .fll{
+	margin: -16px 0;
+	position: absolute;
+	top: 50%;
+	width: 19px;
+	height: 33px;
+	z-index: 60;}
+.DoubleTrackBar .Tracker .flr {
+	left: 100%;}
+.DoubleTrackBar .Tracker .fll {
+	left: auto;
+	text-align: right;
+	right: 100%;}
+.DoubleTrackBar .Tracker .dis {
+	opacity: 0.4;
+	filter: Alpha(opacity=40);}
+.DoubleTrackBar .Tracker .text{
+	top: -20px;
+	z-index: 20;
+	margin: 0;
+	height: auto;
+	font-size: 11px;
+	font-family: Trebuchet MS;
+	white-space: nowrap;
+	width: 100px;}
+	
+.DoubleTrackBar .touch {
+	position: absolute;
+	z-index: 40;
+	text-align: center;
+	background: #aaa;
+	width: 1px;
+	height: 13px;
+	top: 30px;
+}
+.DoubleTrackBar .touch span{
+	position: absolute;
+	top: 14px; left: -10px;
+	color: #aaa;
+	font-size: 10px;
+	font-family: Trebuchet MS;
+	white-space: nowrap;
+}
